@@ -32,7 +32,7 @@ app.use(express.json({
 app.use(cors());
 
 
-app.use(express.static('paytm'))
+// app.use(express.static('paytm'))
 
 
 // ********* Routers admin ******//
@@ -68,7 +68,7 @@ app.use('/uploads/banner', express.static('uploads/banner'));
 app.use('/user/address', require('./routes/User/address'));
 
 
-app.use('/user', require('./routes/User/payment'));
+// app.use('/user', require('./routes/User/payment'));
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
