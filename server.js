@@ -62,6 +62,9 @@ app.use('/uploads/banner', express.static('uploads/banner'));
 
 app.use('/user/address', require('./routes/User/address'));
 
+
+app.use('/user', require('./routes/User/payment'));
+
 app.use((req, res, next) => {
   const error = new Error('Not found');
   error.status = 404;
