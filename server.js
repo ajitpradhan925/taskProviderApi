@@ -17,6 +17,8 @@ connectDB();
 
 const app = express();
 
+
+
 // Dev logging middleware
 app.use(morgan('dev'));
 // Body parser
@@ -28,6 +30,9 @@ app.use(express.json({
 
 // Cors
 app.use(cors());
+
+
+app.use(express.static('paytm'))
 
 
 // ********* Routers admin ******//
