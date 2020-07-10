@@ -1,8 +1,7 @@
 const express = require('express');
-const Order = require('../../models/user/Order');
 const checkJwt = require('../../middleware/admin/user_auth');
 const User = require('../../models/User/Auth');
-
+const Order = require('../../models/User/Order');
 const router = express.Router();
 
 
