@@ -24,45 +24,49 @@ router.post('/add_order', checkJwt, async (req, res, next) => {
 
 
         
-         existUser.task_items.map(task_item => {
+         existUser.task_items.map(cart => {
             
-            const total_price = existUser.total_price;
-            const quantity = existUser.quantity;
+            // const total_price = existUser.total_price;
+            // const quantity = existUser.quantity;
+
+            console.log(cart.quantity);
+            console.log(cart.task_item.service_price);
+
+            // console.log(task_item._id);
+
+            // let order_new = {
+            //     task_item: task_item.task_item,
+            //     quantity:quantity,
+            //     paid_total_price: total_price,
+
+            // };
+
+            // order.user = req.user.id;
+
+            // existUser.task_items.pop(task_item._id);
 
 
-            console.log(task_item._id);
 
-            let order_new = {
-                task_item: task_item.task_item,
-                quantity:quantity,
-                paid_total_price: total_price,
-
-            };
-
-            order.user = req.user.id;
-
-            existUser.task_items.pop(task_item._id);
-
-            order.task_items.push(order_new);
+            // order.task_items.push(order_new);
         });
 
   
-        existUser.save();
+        // existUser.save();
         
-        order.save((err, added) => {
+        // order.save((err, added) => {
 
-            if (added) {
-                res.json({
-                    success: true,
-                    msg: 'Successfully Ordred. Your order ID is ' + added._id,
-                    cart: added
-                });
-            } else {
-                if (err) {
-                    res.json(err);
-                }
-            }
-        });
+        //     if (added) {
+        //         res.json({
+        //             success: true,
+        //             msg: 'Successfully Ordred. Your order ID is ' + added._id,
+        //             cart: added
+        //         });
+        //     } else {
+        //         if (err) {
+        //             res.json(err);
+        //         }
+        //     }
+        // });
 
     });
 
