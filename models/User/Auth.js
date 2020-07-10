@@ -41,6 +41,14 @@ const UserSchema = new mongoose.Schema({
         }
     ],
 
+    orders: [
+      {
+          order_id: {
+              ref: 'Order',
+              type: mongoose.Schema.Types.ObjectId
+          }
+      }
+    ],
 
     total_price: {
         type: Number,

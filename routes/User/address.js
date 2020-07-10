@@ -42,44 +42,47 @@ router.post('/add_address', auth, (req, res, next) => {
 
         }
     ])
-    // User.findById(req.user.id, (err, user) => {
-    //     if (err) return next();
-
-    //     if(user) {
-    //         const address = new User();
-    //         address.addr = req.body.addr1;
-    //         address.addr2 = req.body.addr2;
-    //             address.city = req.body.city;
-    //             address.state = req.body.state;
-    //             address.country = req.body.country;
-    //             address.postalCode = req.body.postalCode;
-            
-
-    //           address.save((err, added) => {
-
-    //             if (added) {
-
-    //                 const user = new User();
-
-    //                 user.address.push()
-    //                 res.json({
-    //                     success: true,
-    //                     msg: 'Added to address successfully',
-    //                     address: added
-    //                 });
-    //             } else {
-    //                 if (err) {
-    //                     res.json(err);
-    //                     console.log(err)
-    //                 }
-    //             }
-    //         });
-
-    //     }
-
-    // });
 
 });
+
+
+router.delete('/delete_address', auth , async (req, res) => {
+
+    let addressId = req.query.addressId;
+
+    let existUser = await User.findOne({
+        _id: req.user.id
+    });
+
+
+    let isFoundAddress = false;
+    let foundAddress = '';
+    existUser.address.map(addresses => {
+       if(addresses._id == addressId) {
+        foundAddress= addressId;
+        isFoundAddress = true;
+       } else {
+            foundAddress = false;
+       }
+    });
+
+    if(isFoundAddress) {
+        existUser.address.pop(foundAddress);
+
+        existUser.save((err, success) => {
+            res.json({
+                success: "Successfully deleted"
+            })
+        })
+       
+    } else {
+        res.json({
+            success: "false"
+        })
+    }
+
+});
+
 
 
 module.exports = router;

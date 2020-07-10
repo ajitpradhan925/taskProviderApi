@@ -36,7 +36,7 @@ var s3 = new aws.S3();
       fileFilter,
     storage: multers3({
         s3: s3,
-        bucket: 'taskprovider-task-images',
+        bucket: 'smart-work-task-images',
         acl: 'public-read',
         metadata: function(req, file, cb) {
             cb(null, {filedName: 'TASK_META_DATA'});

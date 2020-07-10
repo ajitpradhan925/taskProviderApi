@@ -67,6 +67,7 @@ app.use('/uploads/banner', express.static('uploads/banner'));
 
 app.use('/user/address', require('./routes/User/address'));
 
+app.use('/user/order', require('./routes/User/order'));
 
 // app.use('/user', require('./routes/User/payment'));
 

@@ -533,6 +533,47 @@ router.get('/get_cart', auth, (req, res, next) => {
 });
 
 
+router.get('/delete_cart', auth , async (req, res) => {
+
+    let cartId = req.query.cartId;
+
+    let existUser = await User.findOne({
+        _id: req.user.id
+    });
+
+
+    let isFoundCart = false;
+    let foundCart = '';
+    existUser.task_items.map(task_item => {
+       if(task_item._id == cartId) {
+        foundCart= cartId;
+        isFoundCart = true;
+       } else {
+        isFoundCart = false;
+       }
+    });
+
+    if(isFoundCart) {
+        existUser.task_items.pop(foundCart);
+
+        existUser.save((err, success) => {
+            res.json({
+                success: "Successfully deleted"
+            })
+        })
+       
+    } else {
+        res.json({
+            success: "false"
+        })
+    }
+
+});
+
+
+
+
+
 
 
 
